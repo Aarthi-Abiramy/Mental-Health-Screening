@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New HomePage</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url('https://st3.depositphotos.com/1755195/14595/i/450/depositphotos_145959345-stock-photo-blank-black-gradient-texture-background.jpg');
+		  background-size: cover;
+		  background-repeat: no-repeat;
+		  background-attachment: fixed;
+    }
+
+    .navbar {
+        background-color: rgba(202, 219, 200, 0.75);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar .logo {
+        display: flex;
+        align-items: center; /* Center the image and text vertically */
+    }
+
+    .navbar .logo img {
+        width: 60px; /* Set the desired width */
+        height: 55px; /* Set the desired height */
+        margin-right: 10px; /* Add space between the image and text */
+    }
+
+    .navbar .logo p {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        font-family: 'Playfair Display', serif;
+    }
+
+	.nav-links {
+	    list-style: none;
+	    padding: 0;
+	    display: flex;
+	    justify-content: flex-end; /* This will align the links to the right */
+	}
+	
+	.nav-links li {
+	    margin-left: 15px; 
+	}
+
+	.nav-links a {
+	    text-decoration: none;
+	    color: #000; /* Set the initial text color */
+	    font-weight: bold;
+	    transition: color 0.3s ease; /* Add a smooth transition effect for color changes */
+	}
+	
+	.nav-links a:hover {
+	    color: #3273B4; /* Set the color you want on hover */
+	}
+
+    .content {
+        text-align: center;
+        padding: 40px;
+    }
+
+    .content h1 {
+        font-size: 36px;
+        color: #A9CCB0;
+    }
+
+    .content p {
+        font-size: 18px;
+        color: #666;
+    }
+
+    .take-test-button {
+        background-color: #cadbc8;
+        color: #333;
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 5px;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        text-decoration: none;
+        font-weight: bold;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s;
+        z-index: 999;
+    }
+
+    .take-test-button:hover {
+        background-color: #a9c4c0; /* Change the color on hover if needed */
+    }
+	.carousel {
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    height: 300px;
+	    perspective: 800px;
+	    perspective-origin: center;
+	    position: relative;
+	    overflow: hidden;
+	}
+	
+	.card {
+	    width: 300px;
+	    height: 200px;
+	    border: 1px solid #ccc;
+	    border-radius: 5px;
+	    position: absolute;
+	    transform-style: preserve-3d;
+	    transition: transform 1.5s, opacity 1.5s, left 1.5s; /* Updated transitions */
+	    opacity: 0;
+	    left: 50%; /* Initially positioned in the center */
+	    top: 50%;
+	    transform: translate(-50%, -50%) rotateY(0) scale(1); /* Updated transform */
+	}
+	
+	.visible {
+	    transform: translate(-50%, -50%) rotateY(0) scale(1.4); /* Zoom in effect */
+	    opacity: 1;
+	    z-index: 2;
+	    left: 50%; /* Positioned in the center */
+	}
+	
+	.behind-left {
+	    left: 25%; /* Adjust position for the left card */
+	    opacity: 0.7; /* Set opacity for translucency */
+	}
+	
+	.behind-right {
+	    left: 75%; /* Adjust position for the right card */
+	    opacity: 0.7; /* Set opacity for translucency */
+	}
+
+
+    .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+	    
+	.resources-section {
+	    padding: 40px;
+	    transform: translateX(-100%);
+	    transition: transform 0.5s ease;
+	}
+	
+	.resources-section h1 {
+	    font-size: 36px;
+	    color: #666;
+	    text-align: center;
+	}
+	
+	.resources-points {
+	    list-style: none;
+	    padding: 0;
+	    margin: 0;
+	}
+	
+	.resources-points li {
+	    font-size: 20px;
+	    margin-bottom: 20px;
+	    text-align: center;
+	    color: #666;
+	    opacity: 0;
+	    transform: translateX(-20px);
+	    transition: opacity 0.5s ease, transform 0.5s ease;
+	}
+	
+	.resources-section.active {
+	    transform: translateX(0);
+	}
+	
+	.resources-section.active .resources-points li {
+	    opacity: 1;
+	    transform: translateX(0);
+	}
+	
+		
+	.about-us-section {
+	    padding: 5px; /* Add padding to the section */
+	}
+	
+	.about-us-section .content {
+	    text-align: center;
+	}
+	
+	.about-us-section h1 {
+	    font-size: 36px;
+	    color: #333;
+	}
+	
+	.about-us-section p {
+	    font-size: 20px;
+	    color: #666;
+	}
+	
+    @keyframes zoomOut {
+        0% {
+            transform: translateX(0) scale(1);
+        }
+        100% {
+            transform: translateX(-300px) scale(0.8);
+        }
+    }
+
+    @keyframes zoomIn {
+        0% {
+            transform: translateX(300px) scale(0.8);
+        }
+        100% {
+            transform: translateX(0) scale(1);
+        }
+    }
+    
+    
+</style>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://png.pngtree.com/png-vector/20220725/ourmid/pngtree-green-brain-logo-vector-element-therapy-vector-png-image_22505886.png" >
+            <p>Your Inner Voice</p>
+        </div>
+        <ul class="nav-links">
+	      <li class="nav-link"><a href="Contact.html">Contact Us</a></li>
+	      <li class="nav-link"><a href="Review.html">Reviews</a></li>
+	      <li class="nav-link"><a href="FAQ.html">FAQs</a></li>
+	      <li class="nav-link"><a href="login.html">Login</a></li>
+	      <li class="nav-link"><a href="index.html">Sign Up</a></li>
+	      <li class="nav-link"><a href="DocRegister.html">Medico</a></li>
+	      <li class="nav-link admin-logo"><a href="AdminLogin.html">Admin</a></li>
+        </ul>
+    </nav>
+    
+    <a href="login.html" class="take-test-button">Take Test</a>
+    
+    <div class="about-us-section">
+    <div class="content">
+        <h1>Unveiling Your Inner Strength through Your Inner Voice</h1>
+        <p>
+           Welcome to our Mental Health Screening Hub, a compassionate space
+           dedicated to promoting mental well-being and providing valuable 
+           resources for those navigating their mental health journey. We 
+           understand that taking the first step towards self-awareness 
+           and seeking support is a courageous endeavor. Whether you're here to 
+           explore your emotional well-being, gain insights into your mental health,
+           or simply learn more about the significance of proactive screening, 
+           we commend your commitment to self-care.
+        </p>
+    </div>
+	</div>
+    
+    <div class="carousel">
+        <div class="card current">
+            <img src="https://www.jaynelifetherapy.co.uk/blog/wp-content/uploads/2013/09/counselling.jpg">
+        </div>
+        <div class="card next">
+            <img src="https://i.pinimg.com/originals/01/19/de/0119deba21831077fd4e21e3d6020e88.jpg">
+        </div>
+        <div class="card next">
+            <img src="https://e1.pxfuel.com/desktop-wallpaper/550/295/desktop-wallpaper-47-medical-creative-medical-backgrounds-full-nursing.jpg">
+        </div>
+        <div class="card next">
+            <img src="https://www.frostscience.org/wp-content/uploads/2021/03/creative-brain-main.jpg">
+        </div>
+    </div>
+    
+	<div class="resources-section">
+	    <ul class="resources-points">
+	    	<h1>Functional Capabilities</h1>
+	    	
+	        <li>Through detailed reports, we not only break down your scores but also provide
+	         meaningful recommendations and resources tailored to support your well-being. "Your 
+	         Inner Voice" goes beyond self-reflection; if your assessment indicates a need for 
+	         professional assistance, our platform facilitates direct access to licensed mental 
+	         health professionals. Connect with experienced therapists, counselors, or psychologists 
+	         who can provide personalized guidance and support.</li>
+	        
+	        
+	         
+	        <li> "Your Inner Voice" extends an invitation to healthcare professionals, allowing doctors 
+	        to utilize our assessments as a valuable tool in their practice. By leveraging our platform, 
+	        healthcare providers can streamline the assessment process for their patients, gaining 
+	        valuable insights to inform personalized treatment plans.</li>
+	        
+	        <li>Rest assured, we prioritize your privacy and handle all information with the utmost 
+	        confidentiality. "Your Inner Voice" is your secure online haven for exploring and 
+	        addressing mental health concerns. Seamlessly communicate with healthcare professionals 
+	        and take the first step toward a healthier, more balanced life. Your well-being matters, 
+	        and at "Your Inner Voice," we're here to support you on every step of your transformative journey.</li>
+	        
+	        
+	    </ul>
+	</div>
+	
+    <div class="about-us-section">
+    <div class="content">
+        <h1>About Us</h1>
+        <p>
+            Your Inner Voice is dedicated to promoting mental health and well-being. 
+            We believe in the importance of mental health and its impact on overall 
+            happiness and fulfillment. Our platform provides guidance, support, and 
+            resources to help individuals navigate their mental health journey. 
+            Whether you are seeking information, resources, or a supportive community, 
+            we are here to assist you on your path to mental well-being.
+        </p>
+    </div>
+	</div>
+    
+</body>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const cards = document.querySelectorAll('.card');
+    let currentCard = 0;
+
+    function rotateCards() {
+        // Reset opacity, scale, and positions for all cards
+        cards.forEach((card) => {
+            card.classList.remove('visible', 'behind-left', 'behind-right');
+        });
+
+        // Make the current card visible with zoom-in effect
+        cards[currentCard].classList.add('visible');
+
+        // Position the cards for the transition
+        const prevCard = (currentCard === 0) ? cards.length - 1 : currentCard - 1;
+        const nextCard = (currentCard === cards.length - 1) ? 0 : currentCard + 1;
+
+        cards[prevCard].classList.add('behind-left');
+        cards[nextCard].classList.add('behind-right');
+
+        // Move to the next card
+        currentCard = (currentCard + 1) % cards.length;
+    }
+
+    setInterval(rotateCards, 4000);
+    
+    const resourcesSection = document.querySelector('.resources-section');
+
+    function handleScroll() {
+        const scrollPosition = window.scrollY;
+        const resourcesSectionTop = resourcesSection.offsetTop;
+
+        if (scrollPosition > resourcesSectionTop - window.innerHeight / 2) {
+            resourcesSection.classList.add('active');
+        } else {
+            resourcesSection.classList.remove('active');
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+});
+
+
+</script>
+</html>

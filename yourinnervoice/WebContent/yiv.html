@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Your Inner Voice</title>
+</head>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('https://t4.ftcdn.net/jpg/06/04/90/45/360_F_604904549_XUC134u3Zfng32Y9HSck0hrl8vvlEpb4.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.appbar {
+  background-color: rgba(255, 255, 255, 0.5); /* Off white color */
+  height: 60px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.title {
+  font-family:'Times New Roman';;
+  font-size: 60px;
+  color: black;
+  margin: 0;
+  padding: 10px 0;
+  animation: blink 1.5s infinite;
+}
+
+.nav-links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  margin-right: 20px;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+  
+  .description {
+  position: fixed;
+  top: 100px;
+  right: 20px; /* Adjust the left position as needed */
+  max-width: 500px;
+  padding: 10px;
+  border-radius: 5px;
+  overflow: auto;
+  max-height: 120vh;
+  text-align: center; /* Center the text content within the left-aligned container */
+  background-color: rgba(211, 211, 211, 0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+  
+
+  .description-content {
+  font-family: 'Times New Roman';
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    /*font-weight: bold;*/
+    color: black; /* Change text color to black */
+  }
+
+@media screen and (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+}
+  .take-test-button {
+    background-color: #EFEBDC;
+    color: #142A0B;
+    border: none;
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+
+  .take-test-button:hover {
+    background-color: #C3D4E5; /* Change color on hover */
+  }
+  
+  
+
+/* Your existing styles */
+
+.center {
+  /* Remove the background color */
+  position: fixed;
+  top: 0;
+  right: 0; /* Start position at the right half of the page */
+  width: 50%; /* Set the width to 50% */
+  height: 90vh;
+  color: #000;
+  margin: -10px;
+  padding: -10px;
+  display: flex;
+  font-size: 25px;
+  justify-content: center;
+  align-items: center;
+  animation: slideIn 5s ease-in-out forwards; /* Increase animation duration */
+}
+
+.char {
+ 
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    animation: slideChar 5s ease-in-out forwards;
+    color: black;
+    opacity: 0;
+}
+
+/* Add this CSS to your existing stylesheet */
+@keyframes slideIn {
+  from {
+    right: 100%; /* Slide in from the right (start at the right edge) */
+  }
+  to {
+    right: 50%; /* Stop at the right half of the page */
+  }
+}
+
+@keyframes slideChar {
+  from {
+    opacity: 0;
+    transform: translateX(-50px); /* Slide from the right */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0); /* Slide to the original position */
+  }
+}
+
+
+/* Add this CSS for the bottom cards */
+.bottom-cards {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+}
+
+.contact-card img,
+.image-card img {
+  max-width: 100%; /* Set the maximum width to 100% of the container */
+  max-height: 100%;
+    width: auto; /* Override the max-width to maintain aspect ratio */
+  height: auto; /* Set the maximum height to 100% of the container */
+}
+
+.contact-card,
+.image-card {
+  width: 280px;
+  height: 190px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+  text-align: center;
+  display: flex; /* Add display: flex; to align items vertically */
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center; /* Center items vertically */
+  transition: background-color 0.3s ease;
+}
+
+.contact-card {
+width: 280px;
+  height: 190px;
+  background-image: url("https://thecapplug.com/img/cms/94599-contact-us.gif"); /* Set the background image */
+  background-size: cover; /* Scale the background image to cover the entire card */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-position: center center; /* Center the background image */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+  text-align: center;
+  overflow: hidden;
+  color: white; /* Add white text for better readability on the dark background */
+}
+
+.image-card {
+width: 280px;
+  height: 190px;
+  background-image: url("https://www.icegif.com/wp-content/uploads/2021/12/icegif-873.gif"); /* Set the background image */
+  background-size: cover; /* Scale the background image to cover the entire card */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-position: center center; /* Center the background image */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.pq-card {
+  width: 200px;
+  height: 160px;
+  background-image: url("https://genhq.com/wp-content/uploads/2019/01/GenZGender.gif"); /* Set the background image */
+  background-size: cover; /* Scale the background image to cover the entire card */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-position: center center; /* Center the background image */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+
+/* Rest of the CSS remains the same */
+
+
+.contact-card a,
+.image-card a {
+  text-decoration: none;
+  color: #333;
+}
+
+.contact-card:hover,
+.image-card:hover {
+  background-color: #f0f0f0; /* Change color on hover */
+}
+
+.card-content {
+  position: absolute; /* Set position to absolute for the card content */
+  bottom: 0.5px; /* Adjust the distance from the bottom as needed */
+  left: 10px; /* Adjust the distance from the left as needed */
+  color: black; /* Text color for better readability on dark background */
+}
+
+.card1-content {
+  position: absolute; /* Set position to absolute for the card content */
+  bottom: 0.5px; /* Adjust the distance from the bottom as needed */
+  left: 10px; /* Adjust the distance from the left as needed */
+  color: black; /* Text color for better readability on dark background */
+}
+
+.card2-content {
+  position: absolute; /* Set position to absolute for the card content */
+  bottom: 0.5px; /* Adjust the distance from the bottom as needed */
+  left: 10px; /* Adjust the distance from the left as needed */
+  color: black; /* Text color for better readability on dark background */
+}
+
+
+
+/* Remaining styles... */
+
+</style>
+<body>
+  <header class="appbar">
+    <h1 class="title">Your Inner Voice</h1>
+    <ul class="nav-links">
+      <li class="nav-link"><a href="Contact.html">Contact Us</a></li>
+      <li class="nav-link"><a href="Review.html">Reviews</a></li>
+      <li class="nav-link"><a href="FAQ.html">FAQs</a></li>
+      <li class="nav-link"><a href="login.html">Login</a></li>
+      <li class="nav-link"><a href="index.html">Sign Up</a></li>
+      <li class="nav-link"><a href="DocRegister.html">Medico</a></li>
+       <li class="nav-link admin-logo"><a href="AdminLogin.html">Admin</a></li>
+    </ul>
+  </header>
+    <div class="description">
+    <p class="description-content">
+      Welcome to Your Inner Voice! We provide a range of treatments designed to cater to your specific needs.
+      Our team of experienced doctors is here to guide you on your journey to better mental health.
+      Explore our treatments, contact our medical experts, read reviews, and find answers to your FAQs.
+      Join us today to take the first step towards a healthier mind.
+    </p>
+    <br>
+    <br>
+<a href="login.html" class="take-test-button">Take Test</a>
+  </div>
+    <div class="center">
+    <h1>About Us</h1>
+    <br>
+    <p id="text">
+A mental health screening is a standard set of questions that a person answers 
+to help a health care provider check for signs of
+a mental disorder. The questions help the provider learn about a person's mood, 
+thinking, behavior, and memory.
+
+A mental health screening is a way to catch mental health conditions early. 
+If the screening shows signs of a disorder, more testing is usually needed to diagnose a specific mental disorder.
+ </p>
+  </div>
+
+<div class="bottom-cards">
+  <div class="contact-card" onclick="Contact.html">
+    <a href="Contact.html">
+          <div class="card-content">
+        <h3>Contact Us</h3>
+      </div>
+    </a>
+  </div>
+  <div class="image-card">
+    <a href="Image.html">
+     <div class="card1-content" onclick="Image.html">
+        <h3>Images</h3>
+      </div>
+    </a>
+  </div>
+    <div class="pq-card" onclick="FAQ.html">
+    <a href="FAQ.html">
+     <div class="card2-content">
+        <h3>Questions</h3>
+      </div>
+    </a>
+  </div>
+</div>
+
+
+    <script>
+ // script.js
+ 
+ 
+    var text = document.getElementById('text');
+    var newText = '';
+
+    for (let i = 0; i < text.innerText.length; i++) {
+      if (text.innerText[i] === ' ') {
+        newText += ' '; // Preserve spaces
+      } else {
+        newText += '<span class="char">' + text.innerText[i] + '</span>';
+      }
+    }
+
+    text.innerHTML = newText;
+
+    var chars = document.querySelectorAll('.char');
+    var animationDelay = 100; // Adjust the delay as needed
+
+    chars.forEach(function (char, index) {
+      char.style['animation-delay'] = animationDelay * index + 'ms';
+    });
+
+    }
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-image: url("https://img.freepik.com/premium-photo/abstract-background-images-wallpaper-ai-generated_643360-21807.jpg?w=360");
+            background-size: cover;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .content-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .content-form section {
+            margin-bottom: 20px;
+        }
+
+        .form {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .right {
+            flex: 1;
+        }
+
+        .contact-form {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-form span {
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            color: #999;
+            font-size: 14px;
+            pointer-events: none;
+            transition: 0.2s;
+        }
+
+        .contact-form input:focus + span,
+        .contact-form textarea:focus + span,
+        .contact-form input:valid + span,
+        .contact-form textarea:valid + span {
+            top: -10px;
+            left: 5px;
+            font-size: 12px;
+            color: #333;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+        }
+
+        .contact-form input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .contact-form input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .media {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .media li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+
+            .content-form {
+                text-align: center;
+            }
+
+            .right {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Contact Us</h1>
+            <p>Greetings from Your Inner Voice, we are dedicated to supporting your mental well-being. If you have any questions, concerns, or need assistance, please don't hesitate to reach out to us. We're here to help you on your journey to mental wellness.</p>
+            <p>Stay updated and connect with us on social media. Follow us on Instagram, Facebook, Twitter for informative articles, resources, and community discussions related to mental health.</p>
+        </header>
+        <div class="content">
+            <div class="content-form">
+
+                <section>
+                    <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                    <h2>Phone</h2>
+                    <p>123-456-78901548</p>
+                </section>
+
+                <section>
+                    <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+                    <h2>E-mail</h2>
+                    <p>yourinnervoice@gmail.com</p>
+                </section>
+            </div>
+            <form action="SubmitIssue" method="post">
+                <div class="form">
+                    <div class="right">
+                        <div class="contact-form">
+                            <input type="text" id="username" name="username" required>
+                            <span>User Name</span>
+                        </div>
+
+                        <div class="contact-form">
+                            <input type="email" id="email" name="email" required>
+                            <span>E-mail Id</span>
+                        </div>
+                        <div class="contact-form">
+                            <input type="text" id="message" name="message" required>
+                            <span> Message</span>
+                        </div>
+
+                        <div class="contact-form">
+                            <input type="submit" name="submit">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="media">
+            <li><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></li>
+            <li><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></li>
+            <li><i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i></li>
+            <li><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></li>
+        </div>
+        <div class="empty"></div>
+    </div>
+</body>
+</html>

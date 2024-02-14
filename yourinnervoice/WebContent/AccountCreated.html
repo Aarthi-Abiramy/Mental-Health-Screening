@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Account Created</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    #tick {
+      font-size: 80px;
+      color: green;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      pointer-events: none;
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    #okButton {
+      background-color: #941551;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      display: inline-block; /* Set display to inline-block */
+    }
+  </style>
+</head>
+<body>
+  <h2>Your account has been created successfully</h2>
+  <div class="confetti-container"></div>
+
+  <script>
+    function createConfetti() {
+      var confettiColors = ['#FFD700', '#FF69B4', '#00CED1', '#FFA500', '#ADFF2F'];
+      var confettiContainer = document.querySelector('.confetti-container');
+
+      for (var i = 0; i < 200; i++) {
+        var confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.top = Math.random() * -100 + 'vh';
+        confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+        confetti.style.animationDelay = Math.random() * 5 + 's';
+        confetti.style.animationDuration = Math.random() * 5 + 5 + 's';
+        confetti.style.animationIterationCount = 'infinite';
+        confetti.style.animationName = 'confetti-fall';
+        confettiContainer.appendChild(confetti);
+      }
+    }
+
+    createConfetti();
+
+    // Display "Ok Continue" button after 3 seconds
+    setTimeout(function() {
+      var okButton = document.createElement('button');
+      okButton.innerText = 'Ok Continue';
+      okButton.id = 'okButton';
+      okButton.addEventListener('click', function() {
+        // Redirect to login.html
+        window.location.href = 'login.html';
+      });
+      document.body.appendChild(okButton);
+    }, 3000);
+  </script>
+</body>
+</html>

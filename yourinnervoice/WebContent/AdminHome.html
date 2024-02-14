@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .button-container {
+            margin: 100px auto;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .home-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1; /* Ensure it appears above other elements */
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Admin Dashboard</h1>
+    <div class="button-container">
+        <a href="users_registered.jsp" class="button">Users Registered</a>
+        <a href="doctors_registered.jsp" class="button">Doctors Registered</a>
+        <a href="display_queries.jsp" class="button">Queries</a>
+    </div>
+
+    <!-- Home icon link -->
+    <a href="yiv.html" class="home-icon">
+        <img src="https://cdn.icon-icons.com/icons2/2248/PNG/512/home_circle_icon_137496.png" 
+        width="40" 
+        height="40">
+    </a>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .background-image {
+      background-image: url('https://i.pinimg.com/originals/ee/2c/41/ee2c4191251fd267fda23548dd63e53f.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .signup-container {
+      background-color: rgba(240, 240, 240);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      width: 80%;
+    }
+
+    .signup-form {
+      display: flex;
+      flex-direction: column;
+      font-size: 18px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .form-field {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .form-field label {
+      font-weight: bold;
+      margin-right: 10px;
+      width: 150px;
+    }
+
+    .form-field input,
+    .form-field select {
+      flex: 1;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .error-message {
+      color: red;
+    }
+
+    .gender-label {
+      margin-bottom: 5px;
+    }
+
+    input[type="submit"] {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+select#country {
+      font-size: 16px; /* Increase the font size */
+      padding: 8px; /* Adjust the padding */
+      width: 100%; /* Make the dropdown span the full width of the container */
+      box-sizing: border-box; /* Include padding and border in the width */
+      height: 40px; /* Increase the height of the dropdown */
+    }
+  </style>
+</head>
+<body>
+  <div class="background-image">
+    <div class="signup-container">
+      <div class="signup-form">
+        <h2>Sign Up</h2>
+           <form action="RegistrationServlet" method="post">
+          <div class="form-field">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" maxlength="15" required />
+            <span class="error-message" id="firstNameError"></span>
+          </div>
+
+          <div class="form-field">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" maxlength="15" required />
+            <span class="error-message" id="lastNameError"></span>
+          </div>
+
+          <div class="form-field">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-field">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required />
+          </div>
+
+          <div class="form-field">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+
+          <div class="form-field gender-label">
+            <label>Gender:</label>
+            <input type="radio" id="male" name="gender" value="male" checked>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+            <input type="radio" id="other" name="gender" value="other">
+            <label for="other">Other</label>
+          </div>
+
+          <div class="form-field">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+          </div>
+
+          <div class="form-field">
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required />
+          </div>
+
+          <div class="form-group">
+            <label for="country">Country:</label>
+            <select id="country" name="country" required>
+              <option value="" disabled selected>Select your country</option>
+              <!-- Add all countries here as <option> elements -->
+              <option value="India">India</option>
+              <option value="China">China</option>
+              <option value="Africa">Africa</option>
+              <option value="Korea">Korea</option>
+              <option value="Japan">Japan</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Malaysia">Malaysia</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox" required> I agree to the terms and conditions
+            </label>
+          </div>
+
+          <input type="submit" value="Sign Up">
+        </form>
+            <div class="form-group">
+               <p>Already have an account ? Please <a href="login.html" onclick="redirectToLogin()">Login</a></p>
+            </div>
+      </div>
+    </div>
+  </div>
+ <div id="accountCreatedPage" style="display: none;">
+    <div class="container">
+      <i class="fas fa-check-circle icon-check"></i>
+      <p class="message">Your account has been created!</p>
+    </div>
+  </div>
+  <script>
+    function handleFormSubmission() {
+      var firstName = document.forms["signupForm"]["firstName"].value;
+      var lastName = document.forms["signupForm"]["lastName"].value;
+      var phoneNumber = document.forms["signupForm"]["phoneNumber"].value;
+var password = document.forms["signupForm"]["password"].value;
+      if (firstName.length > 15) {
+        document.getElementById("firstNameError").innerHTML = "First name should not exceed 15 characters!";
+        return false;
+      } else {
+        document.getElementById("firstNameError").innerHTML = "";
+      }
+
+      if (lastName.length > 15) {
+        document.getElementById("lastNameError").innerHTML = "Last name should not exceed 15 characters!";
+        return false;
+      } else {
+        document.getElementById("lastNameError").innerHTML = "";
+      }
+
+      if (phoneNumber.length !== 10) {
+        alert("Phone number should be 10 digits!");
+        return false;
+      }
+    }
+   
+    }
+ if (!isValidPassword(password)) {
+        document.getElementById("passwordError").innerHTML = "Password must contain at least 8 characters, including 1 uppercase letter, 1 lowercase letter, and 1 number.";
+        return false;
+      } else {
+        document.getElementById("passwordError").innerHTML = "";
+      }
+
+      // Redirect to the Account Created page
+      document.getElementById("accountCreatedPage").style.display = "block";
+      document.getElementsByClassName("signup-container")[0].style.display = "none";
+
+      return false; // Prevent default form submission
+    }
+if (allValidationsPassed) {
+    // Redirect to another page
+    window.location.href = "acc_cre.html";
+    return false; // Prevent default form submissi
+  }
+
+  return false;
+ function isValidPassword(password) {
+      var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+      return regex.test(password);
+    }
+ function redirectToLogin() {
+     location.href = "login.html";
+   }
+  </script>
+</body>
+</html>
